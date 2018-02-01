@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity\Blog;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -49,6 +51,21 @@ class Post
      */
     private $active;
 
+    /**
+     * Many Posts have Many Categories.
+     * @var Collection
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Blog\Category", inversedBy="posts", cascade={"persist", "remove"})
+     * @ORM\JoinTable(name="post_categories")
+     */
+    private $categories;
+
+    /**
+     * Post constructor.
+     */
+    public function __construct()
+    {
+        $this->categories = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -154,6 +171,48 @@ class Post
     public function getActive()
     {
         return $this->active;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getCategories() : Collection
+    {
+        return $this->categories;
+    }
+
+    /**
+     * @return String
+     */
+    public function getCategoriesString() : String
+    {
+        $toString = '[';
+        /** @var Category $category */
+        foreach ($this->categories as $category) {
+            $toString .= $category->getName() . ', ';
+        }
+        $toString = substr($toString, 0, -2);
+        $toString .= ']';
+
+        return $toString;
+    }
+
+    /**
+     * @param Collection $categories
+     */
+    public function setCategories(Collection $categories)
+    {
+        $this->categories = $categories;
+    }
+
+    /**
+     * @param Category $category
+     * @return Post
+     */
+    public function addCategory(Category $category)
+    {
+        $this->categories->add($category);
+        return $this;
     }
 }
 

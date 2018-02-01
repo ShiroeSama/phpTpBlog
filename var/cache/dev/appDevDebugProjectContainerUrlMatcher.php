@@ -104,6 +104,11 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        // category
+        if (0 === strpos($pathinfo, '/category') && preg_match('#^/category/(?P<category>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'category')), array (  '_controller' => 'AppBundle\\Controller\\CategoryController::indexAction',));
+        }
+
         // homepage
         if ('' === $trimmedPathinfo) {
             $ret = array (  '_controller' => 'AppBundle\\Controller\\HomeController::indexAction',  '_route' => 'homepage',);

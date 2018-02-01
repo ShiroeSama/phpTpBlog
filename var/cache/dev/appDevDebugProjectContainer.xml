@@ -508,13 +508,21 @@
   <services>
     <service id="service_container" class="Symfony\Component\DependencyInjection\ContainerInterface" public="true" synthetic="true"/>
     <service id="AppBundle\AppBundle" class="AppBundle\AppBundle" public="false" autowire="true" autoconfigure="true"/>
+    <service id="AppBundle\Controller\CategoryController" class="AppBundle\Controller\CategoryController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <argument type="service" id="AppBundle\Service\Blog\CategoryService"/>
+    </service>
     <service id="AppBundle\Controller\HomeController" class="AppBundle\Controller\HomeController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <argument type="service" id="AppBundle\Service\Blog\PostService"/>
     </service>
-    <service id="AppBundle\DataFixtures\PostFixtures" class="AppBundle\DataFixtures\PostFixtures" public="false" autowire="true" autoconfigure="true">
+    <service id="AppBundle\DataFixtures\AppFixtures" class="AppBundle\DataFixtures\AppFixtures" public="false" autowire="true" autoconfigure="true">
       <tag name="doctrine.fixture.orm"/>
       <argument type="service" id="AppBundle\Service\Blog\PostService"/>
+      <argument type="service" id="AppBundle\Service\Blog\CategoryService"/>
+    </service>
+    <service id="AppBundle\Service\Blog\CategoryService" class="AppBundle\Service\Blog\CategoryService" public="false" autowire="true" autoconfigure="true">
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
     </service>
     <service id="AppBundle\Service\Blog\PostService" class="AppBundle\Service\Blog\PostService" public="false" autowire="true" autoconfigure="true">
       <argument type="service" id="doctrine.orm.default_entity_manager"/>
@@ -535,7 +543,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
       <tag name="controller.argument_value_resolver" priority="-50"/>
-      <argument type="service" id="service_locator.j8ak.yw"/>
+      <argument type="service" id="service_locator..6zrezj"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false">
       <tag name="controller.argument_value_resolver" priority="-100"/>
@@ -1585,14 +1593,6 @@
       </call>
       <call method="addListener">
         <argument>kernel.request</argument>
-        <argument type="collection">
-          <argument type="service" id="debug.debug_handlers_listener"/>
-          <argument>configure</argument>
-        </argument>
-        <argument>2048</argument>
-      </call>
-      <call method="addListener">
-        <argument>console.command</argument>
         <argument type="collection">
           <argument type="service" id="debug.debug_handlers_listener"/>
           <argument>configure</argument>
@@ -3528,7 +3528,7 @@
       <argument type="service" id="service_container"/>
       <call method="addFixtures">
         <argument type="collection">
-          <argument type="service" id="AppBundle\DataFixtures\PostFixtures"/>
+          <argument type="service" id="AppBundle\DataFixtures\AppFixtures"/>
         </argument>
       </call>
     </service>
@@ -3566,15 +3566,21 @@
         <argument>server:log</argument>
       </call>
     </service>
+    <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\CategoryController" class="AppBundle\Controller\CategoryController" public="true" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Controller\CategoryController" class="AppBundle\Controller\CategoryController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\HomeController" class="AppBundle\Controller\HomeController" public="true" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\HomeController" class="AppBundle\Controller\HomeController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id="instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.AppBundle\DataFixtures\PostFixtures" class="AppBundle\DataFixtures\PostFixtures" public="false" autowire="true" abstract="true"/>
-    <service id="abstract.instanceof.AppBundle\DataFixtures\PostFixtures" class="AppBundle\DataFixtures\PostFixtures" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.AppBundle\DataFixtures\AppFixtures" class="AppBundle\DataFixtures\AppFixtures" public="false" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\DataFixtures\AppFixtures" class="AppBundle\DataFixtures\AppFixtures" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="service_locator.vbhdain" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection"/>
+    </service>
     <service id="service_locator.sdcdkg8" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection"/>
     </service>
-    <service id="service_locator.j8ak.yw" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator..6zrezj" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection"/>
     </service>
