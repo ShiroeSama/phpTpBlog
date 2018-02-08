@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- Pannel Administratif{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+
+            <section class="post-content">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-10" style="display: flex; align-items: center;">
+                            <h4 class="m-0 ml-3">Posts</h4>
+                        </div>
+                        <div class="col-2 text-right">
+                            <a class="btn btn-warning mr-3" href="{{ path('admin-post-add') }}">+</a>
+                        </div>
+                    </div>
+
+                    <hr class="bg-warning">
+
+                    <div class="table-responsive">
+                        <table id="mytable" class="table table-bordred table-striped table-fixed">
+                            <thead>
+                            <th class="col-1">#</th>
+                            <th class="col-2">Title</th>
+                            <th class="col-2">Created At</th>
+                            <th class="col-2">Active</th>
+                            <th class="col-3">Categories</th>
+                            <th class="col-1">Edit</th>
+                            <th class="col-1">Delete</th>
+                            </thead>
+                            <tbody>
+                            {% for post in posts %}
+                                <tr>
+                                    <td class="col-1">{{ post.id }}</td>
+                                    <td class="col-2">{{ post.title }}</td>
+                                    <td class="col-2">{{ post.createdAt | date('d M Y')  }}</td>
+                                    <td class="col-2">{{ post.active }}</td>
+                                    <td class="col-3">{{ post.categoriesString }}</td>
+                                    <td class="col-1">
+                                        <p data-placement="top" data-toggle="tooltip" title="Edit">
+                                            <a href="{{ path('admin-post-edit', {'post' : post.id}) }}" class="btn btn-primary btn-xs">
+                                                Edit
+                                            </a>
+                                        </p>
+                                    </td>
+                                    <td class="col-1">
+                                        <p data-placement="top" data-toggle="tooltip" title="Delete">
+                                            <a href="{{ path('admin-post-delete', {'post' : post.id}) }}" class="btn btn-danger btn-xs">
+                                                X
+                                            </a>
+                                        </p>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section class="post-content mt-5">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-10" style="display: flex; align-items: center;">
+                            <h4 class="m-0 ml-3">Categories</h4>
+                        </div>
+                        <div class="col-2 text-right">
+                            <a class="btn btn-warning mr-3" href="{{ path('admin-category-add') }}">+</a>
+                        </div>
+                    </div>
+
+                    <hr class="bg-warning">
+
+                    <div class="table-responsive">
+                        <table id="mytable" class="table table-bordred table-striped table-fixed">
+                            <thead>
+                            <th class="col-1">#</th>
+                            <th class="col-12">Name</th>
+                            <th class="col-1">Edit</th>
+                            <th class="col-1">Delete</th>
+                            </thead>
+                            <tbody>
+                            {% for category in categories %}
+                                <tr>
+                                    <td class="col-1">{{ category.id }}</td>
+                                    <td class="col-12">{{ category.name }}</td>
+                                    <td class="col-1">
+                                        <p data-placement="top" data-toggle="tooltip" title="Edit">
+                                            <a href="{{ path('admin-category-edit', {'category' : category.id}) }}" class="btn btn-primary btn-xs">
+                                                Edit
+                                            </a>
+                                        </p>
+                                    </td>
+                                    <td class="col-1">
+                                        <p data-placement="top" data-toggle="tooltip" title="Delete">
+                                            <a href="{{ path('admin-category-delete', {'category' : category.id}) }}" class="btn btn-danger btn-xs">
+                                                X
+                                            </a>
+                                        </p>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+{% endblock %}

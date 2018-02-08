@@ -1,0 +1,10 @@
+{%- block form_row -%}
+    <div>
+        {{- form_label(form) -}}
+        {{- form_widget(form) -}}
+    </div>
+{%- endblock form_row -%}
+
+{%- block button_row -%}
+    {{- form_widget(form) -}}
+{%- endblock button_row -%}

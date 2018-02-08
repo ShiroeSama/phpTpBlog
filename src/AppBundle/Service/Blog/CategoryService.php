@@ -42,6 +42,16 @@ class CategoryService
         $this->em->flush();
     }
 
+    public function edit(Category $category): Category {
+        $this->em->flush();
+        return $category;
+    }
+
+    public function delete(Category $category) {
+        $this->em->remove($category);
+        $this->em->flush();
+    }
+
     public function drop()
     {
         $this->repository->drop();

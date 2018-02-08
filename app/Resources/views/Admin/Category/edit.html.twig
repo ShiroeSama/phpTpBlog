@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% form_theme formView 'Templates/Form/formLayout.html.twig' %}
+
+{% block title %}- Pannel Administratif{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <div class="post-content">
+            {% if category is defined %}
+                <h2>{{ category.name }}</h2>
+            {% else %}
+                <h2>Add Category :</h2>
+            {% endif %}
+
+            <hr class="bg-info">
+
+            {{ form_start(formView) }}
+            <div class="p-3">
+
+                <div>
+                    {{ form_label(formView.name) }}
+                    {{ form_widget(formView.name) }}
+                </div>
+            </div>
+
+            <hr class="bg-info">
+
+            <div class="text-center mt-5">
+                {% if category is defined %}
+                    <button type="submit" class="btn btn-primary">Valider</button>
+                {% else %}
+                    <button type="submit" class="btn btn-primary">Créer</button>
+                {% endif %}
+            </div>
+
+            {{ form_widget(formView._token) }}
+            {{ form_end(formView, {'render_rest': false}) }}
+        </div>
+
+        {% for error in errors %}
+            <div class="alert alert-danger mt-2">
+                {{ error }}
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}

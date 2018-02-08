@@ -20,6 +20,7 @@
         /**
          * HomeController constructor.
          * @param PostService $postService
+         * @param CategoryService $categoryService
          */
         public function __construct(PostService $postService, CategoryService $categoryService)
         {
@@ -38,7 +39,6 @@
             // Drop Database
             $this->postService->drop();
             $this->categoryService->drop();
-
 
 
             // ----------------------------------

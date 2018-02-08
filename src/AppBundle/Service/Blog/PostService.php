@@ -25,7 +25,21 @@ class PostService
     }
 
     public function add(Post $post) {
+        if (is_null($post->getCreatedAt())) {
+            $post->setCreatedAt(new \DateTime());
+        }
+
         $this->em->persist($post);
+        $this->em->flush();
+    }
+
+    public function edit(Post $post): Post {
+        $this->em->flush();
+        return $post;
+    }
+
+    public function delete(Post $post) {
+        $this->em->remove($post);
         $this->em->flush();
     }
 

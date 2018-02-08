@@ -2,22 +2,25 @@
 {% block title %}- Blog List{% endblock %}
 
 {% block body %}
-    <div class="container mt-5">
+    <div class="container">
 
-        {% for post in postList %}
+        <section class="post-content">
+            {% for post in postList %}
 
-            <div class="mx-auto">
-                <div>
-                    <h3 class="title">{{ post.title }}</h3>
-                    <p class="ml-3">{{ post.categoriesString }}</p>
-                    <p class="ml-3">{{ post.description }}</p>
+                <div class="mx-auto">
+                    <div>
+                        <h3 class="title">{{ post.title }}</h3>
+                        <p class="ml-3">{{ post.categoriesString }}</p>
+                        <p class="ml-3">{{ post.description }}</p>
 
-                    <p class="text-muted text-right">{{ post.createdAt | date('d M Y') }}</p>
+                        <p class="text-muted text-right">{{ post.createdAt | date('d M Y') }}</p>
+                    </div>
                 </div>
-            </div>
 
-            <hr>
+                <hr class="bg-info">
 
-        {% endfor %}
+            {% endfor %}
+        </section>
+
     </div>
 {% endblock %}

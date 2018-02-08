@@ -64,6 +64,7 @@ class ComposerStaticInit8ac475efb190294f25f53043122d4be5
         array (
             'Fig\\Link\\' => 9,
             'Faker\\' => 6,
+            'FOS\\UserBundle\\' => 15,
         ),
         'D' => 
         array (
@@ -196,6 +197,10 @@ class ComposerStaticInit8ac475efb190294f25f53043122d4be5
         'Faker\\' => 
         array (
             0 => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker',
+        ),
+        'FOS\\UserBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/friendsofsymfony/user-bundle',
         ),
         'Doctrine\\Instantiator\\' => 
         array (

@@ -54,7 +54,7 @@ class Post
     /**
      * Many Posts have Many Categories.
      * @var Collection
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Blog\Category", inversedBy="posts", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Blog\Category", inversedBy="posts", cascade={"persist"})
      * @ORM\JoinTable(name="post_categories")
      */
     private $categories;
