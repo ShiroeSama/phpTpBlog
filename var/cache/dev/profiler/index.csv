@@ -255,3 +255,10 @@ e71585,127.0.0.1,GET,http://localhost:8000/admin/post/edit/431,1518103980,,200
 e65b59,127.0.0.1,GET,http://localhost:8000/admin/post/add,1518104027,,200
 89626d,127.0.0.1,GET,http://localhost:8000/admin/post/edit/431,1518104030,,200
 73333e,127.0.0.1,GET,http://localhost:8000/admin/,1518104035,,200
+d568d7,127.0.0.1,GET,http://localhost:8000/,1518104637,,200
+67bdeb,127.0.0.1,GET,http://localhost:8000/category/Sport,1518104639,,200
+5ecbe9,127.0.0.1,GET,http://localhost:8000/category/Developpement,1518104640,,200
+69e9e7,127.0.0.1,GET,http://localhost:8000/category/Developpement,1518104670,,200
+56d6e1,127.0.0.1,GET,http://localhost:8000/category/Developpement,1518104673,,200
+7a56cc,127.0.0.1,GET,http://localhost:8000/category/Sport,1518104674,,200
+34559a,127.0.0.1,GET,http://localhost:8000/category/Divertissement,1518104675,,200
